@@ -18,3 +18,8 @@ __pycache__/
 # Temporary files
 *.tmp
 *.log
+# GENESIS AI conversation memory
+genesis_memory.json
+
+# JSON experiment data
+test_memory.json
