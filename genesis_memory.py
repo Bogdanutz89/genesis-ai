@@ -13,16 +13,13 @@ def salveaza_istoricul(istoric, fisier_memorie):
 
 def propune_modificare(memorie, cheie, valoare, fisier_memorie_lunga):
 
-    if cheie not in memorie:
-        print("GENESIS: Aceasta informatie nu exista in memorie.")
-        return
 
     if not isinstance(valoare, str) or not valoare.strip():
         print("GENESIS: Valoarea propusa nu este valida.")
         return
 
     valoare = valoare.strip()
-    valoare_veche = memorie[cheie]
+    valoare_veche = memorie.get(cheie)
 
     print("\nGENESIS: Valoare veche:", valoare_veche)
     print("GENESIS: Valoare noua:", valoare)
@@ -42,46 +39,45 @@ def propune_modificare(memorie, cheie, valoare, fisier_memorie_lunga):
         print("GENESIS: Memoria permanenta a fost actualizata!")
 
     except OSError as eroare:
-        memorie[cheie] = valoare_veche
+        if valoare_veche is None:
+            memorie.pop(cheie, None)
+        else:
+            memorie[cheie] = valoare_veche
+
         print("GENESIS: Eroare la salvarea memoriei:", eroare)
 
 def interpreteaza_memorarea(text, memorie,model,url):
 
-    chei_permise = list(memorie.keys())
+    chei_existente = list(memorie.keys())
 
     instructiuni = f"""
 Esti un analizor de cereri de memorare.
 
-Analizeaza mesajul utilizatorului si stabileste daca
-acesta cere EXPLICIT modificarea memoriei permanente.
+Stabileste daca utilizatorul cere EXPLICIT sa memorezi
+sau sa actualizezi o informatie permanenta.
 
-Chei permise: {json.dumps(chei_permise, ensure_ascii=False)}
+Chei deja existente:
+{json.dumps(chei_existente, ensure_ascii=False)}
 
-Returneaza DOAR un obiect JSON cu aceste campuri:
-- actiune
-- cheie
-- valoare
+Daca informatia se refera la o cheie existenta,
+foloseste acea cheie.
 
-Pentru o cerere clara de memorare:
-{{
-    "actiune": "actualizare_memorie",
-    "cheie": "proiect",
-    "valoare": "EXEMPLU"
-}}
+Daca este o informatie noua, creeaza o cheie scurta,
+descriptiva, folosind litere mici si underscore.
 
-Pentru un mesaj obisnuit sau o cerere neclara:
-{{
-    "actiune": "nimic",
-    "cheie": "",
-    "valoare": ""
-}}
+Exemplu:
+Utilizator: Tine minte ca animalul meu preferat este delfinul.
+Raspuns:
+{{"actiune": "actualizare_memorie", "cheie": "animal_preferat", "valoare": "delfinul"}}
+
+Daca mesajul nu cere explicit memorarea:
+{{"actiune": "nimic", "cheie": "", "valoare": ""}}
 
 REGULI:
 - Nu inventa informatii.
-- Nu modifica memoria.
-- Nu interpreta o intrebare ca pe o cerere de memorare.
-- Foloseste doar cheile permise.
-- Daca nu exista o cerere explicita, actiunea este "nimic".
+- Nu modifica memoria direct.
+- Nu interpreta intrebarile ca cereri de memorare.
+- Returneaza exclusiv JSON.
 """
 
     date = {
@@ -130,7 +126,7 @@ REGULI:
     if not isinstance(valoare, str):
         return None
 
-    if cheie not in memorie:
+    if not cheie or not cheie.isidentifier() or not cheie.islower():
         return None
 
     if not valoare.strip():
