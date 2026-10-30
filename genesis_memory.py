@@ -114,7 +114,7 @@ REGULI:
     if not isinstance(analiza, dict):
         return None
 
-    if analiza.get("actiune") != "actualizare_memorie":
+    if analiza.get("actiune") not in ("actualizare_memorie", "creare_memorie"):
         return None
 
     cheie = analiza.get("cheie")
