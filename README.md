@@ -1,125 +1,125 @@
 # PROJECT GENESIS
 
-**GENESIS** este un asistent AI local, dezvoltat în Python, care utilizează Ollama pentru comunicarea cu modele lingvistice.
+**GENESIS** is a local AI assistant developed in Python that uses Ollama to communicate with language models.
 
-Aplicația funcționează în terminal și oferă conversații cu un model AI local, un sistem de comenzi, istoric conversațional persistent și memorie permanentă.
+The v2.0 application runs in the terminal and provides conversations with a local AI model, a command system, persistent conversation history, and long-term memory.
 
-**Versiune publică: v2.0**
+**Version documented in the following historical section: v2.0.** For the current version, see [GENESIS v3.0](#genesis-v30--current-version) below.
 
-## Funcționalități
+## Features (v2.0)
 
-- **AI local** — comunicare cu modelul `qwen3:4b` prin API-ul Ollama.
-- **Interfață în terminal** — conversație text cu asistentul.
-- **Istoric conversațional** — salvarea mesajelor în format JSON.
-- **Memorie permanentă** — păstrarea informațiilor între sesiuni.
-- **Actualizarea memoriei cu confirmare** — modificările necesită acordul utilizatorului.
-- **Comenzi dedicate** — administrarea istoricului și a memoriei.
-- **Context conversațional** — utilizarea mesajelor recente și identificarea informațiilor relevante din istoric.
-- **Căutare semantică asistată de LLM** — identificarea informațiilor relevante cu ajutorul modelului local, fără embeddings.
-- **Gestionarea erorilor** — tratarea problemelor de conexiune, timeout și salvare.
+- **Local AI** — communication with the `qwen3:4b` model through the Ollama API.
+- **Terminal interface** — text-based conversations with the assistant.
+- **Conversation history** — messages saved in JSON format.
+- **Long-term memory** — information preserved between sessions.
+- **Memory updates with confirmation** — changes require user approval.
+- **Dedicated commands** — conversation history and memory management.
+- **Conversational context** — use of recent messages and identification of relevant information from history.
+- **LLM-assisted semantic search** — identification of relevant information using the local language model, without embeddings.
+- **Error handling** — handling connection problems, timeouts, and saving errors.
 
-## Cerințe
+## Requirements (v2.0)
 
-Pentru rularea GENESIS v2.0 sunt necesare:
+GENESIS v2.0 requires:
 
 - Python 3
 - Ollama
-- Modelul `qwen3:4b`
-- Biblioteca Python `requests`
+- The `qwen3:4b` model
+- The Python `requests` library
 
-Aplicația a fost dezvoltată și testată într-un mediu Linux.
+The application was developed and tested in a Linux environment.
 
-## Instalare
+## Installation (v2.0)
 
-### 1. Clonează repository-ul
+### 1. Clone the repository
 
 ```bash
-git clone <URL_REPOSITORY>
+git clone https://github.com/Bogdanutz89/genesis-ai.git
 cd genesis-ai
 ```
 
-Înlocuiește `<URL_REPOSITORY>` cu adresa repository-ului public.
-
-### 2. Creează mediul virtual Python
+### 2. Create a Python virtual environment
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3. Instalează dependența Python
+### 3. Install the Python dependency
 
 ```bash
 python -m pip install requests
 ```
 
-### 4. Pregătește Ollama
+### 4. Set up Ollama
 
-Instalează Ollama folosind instrucțiunile oficiale.
+Install Ollama following the official installation instructions.
 
-Descarcă modelul:
+Download the model:
 
 ```bash
 ollama pull qwen3:4b
 ```
 
-Asigură-te că serviciul Ollama este pornit.
+Make sure the Ollama service is running.
 
-## Pornirea aplicației
+## Running the Application (v2.0)
 
-Din directorul proiectului, cu mediul virtual activat:
+From the project directory, with the virtual environment activated:
 
 ```bash
 python genesis_ai_v20.py
 ```
 
-La pornire, aplicația afișează:
+At startup, the application displays:
 
 ```text
 === GENESIS AI v2.0 ===
 ```
 
-GENESIS utilizează implicit API-ul Ollama disponibil la:
+GENESIS uses the Ollama API available by default at:
 
 ```text
 http://127.0.0.1:11434/api/chat
 ```
 
-## Comenzi disponibile
+## Available Commands (v2.0)
 
-| Comandă | Descriere |
+| Command | Description |
 |---|---|
-| `/help` | Afișează comenzile disponibile |
-| `/memory` | Afișează memoria permanentă |
-| `/set cheie valoare` | Propune modificarea unei informații din memorie |
-| `/clear` | Șterge istoricul conversației |
-| `/status` | Afișează starea asistentului |
-| `/save` | Salvează istoricul și memoria permanentă |
-| `/reset` | Resetează memoria permanentă, cu confirmare |
-| `exit` | Închide aplicația |
+| `/help` | Displays available commands |
+| `/memory` | Displays long-term memory |
+| `/set key value` | Proposes changing a value stored in memory |
+| `/clear` | Clears conversation history |
+| `/status` | Displays assistant status |
+| `/save` | Saves conversation history and long-term memory |
+| `/reset` | Resets long-term memory, with confirmation |
+| `exit` | Exits the application |
 
-## Exemplu de utilizare
+## Usage Example (v2.0)
+
+The following example is translated for readability; the application's actual prompts may appear in Romanian.
 
 ```text
-Tu: /set proiect GENESIS
+You: /set proiect GENESIS
 
-GENESIS: Valoare veche: Necunoscut
-GENESIS: Valoare noua: GENESIS
-GENESIS: Confirmi modificarea? (da/nu): DA
+GENESIS: Previous value: Unknown
+GENESIS: New value: GENESIS
+GENESIS: Confirm the change? (yes/no): YES
 
-GENESIS: Memoria permanenta a fost actualizata!
+GENESIS: Long-term memory has been updated!
 
-Tu: /memory
+You: /memory
 
-=== MEMORIE PERMANENTA ===
+=== LONG-TERM MEMORY ===
 nume: Necunoscut
 limba_preferata: romana
 proiect: GENESIS
 ```
 
-## Arhitectură
+## Architecture (v2.0)
 
-GENESIS v2.0 utilizează trei module principale:
+GENESIS v2.0 uses three main modules:
 
 ```text
 genesis-ai/
@@ -130,144 +130,143 @@ genesis-ai/
 └── .gitignore
 ```
 
-Repository-ul conține și fișiere istorice care documentează evoluția aplicației.
+The repository also contains historical files documenting the application's evolution.
 
 ### genesis_ai_v20.py
 
-Modulul principal al aplicației.
+The application's main module. Responsibilities:
 
-Responsabilități:
-
-- Interacțiunea cu utilizatorul în terminal.
-- Construirea contextului conversațional.
-- Comunicarea HTTP cu Ollama.
-- Procesarea și afișarea răspunsurilor AI.
-- Integrarea sistemelor de comenzi și memorie.
+- Terminal-based user interaction.
+- Building conversational context.
+- HTTP communication with Ollama.
+- Processing and displaying AI responses.
+- Integrating the command and memory systems.
 
 ### genesis_commands.py
 
-Modulul responsabil pentru identificarea și executarea comenzilor utilizatorului.
+The module responsible for identifying and executing user commands.
 
 ### genesis_memory.py
 
-Modulul responsabil pentru operațiile asupra istoricului conversațional și memoriei permanente.
+The module responsible for operations involving conversation history and long-term memory.
 
-## Persistența datelor
+## Data Persistence
 
-GENESIS stochează local informațiile în două fișiere JSON:
+GENESIS stores information locally in two JSON files:
 
-| Fișier | Rol |
+| File | Purpose |
 |---|---|
-| `genesis_memory.json` | Istoricul conversațiilor |
-| `genesis_long_memory.json` | Memoria permanentă |
+| `genesis_memory.json` | Conversation history |
+| `genesis_long_memory.json` | Long-term memory |
 
-Datele sunt păstrate între sesiuni.
+Data is preserved between sessions. Both files are excluded from the repository through `.gitignore` because they may contain personal information.
 
-Ambele fișiere sunt excluse din repository prin `.gitignore`, deoarece pot conține informații personale.
+## Project Evolution (through v2.0)
 
-## Evoluția proiectului
+The repository preserves the application's development history. The milestones through **GENESIS v2.0** include:
 
-Repository-ul păstrează istoricul dezvoltării aplicației, de la **GENESIS v1.0 până la GENESIS v2.0**.
+- **v1.0–v1.5:** development of the command system.
+- **v1.6–v1.7:** separation of commands and memory management into Python modules.
+- **v1.8:** improvements to conversational context.
+- **v1.9:** stability and error-handling improvements.
+- **v2.0:** expansion of long-term memory.
 
-Etapele principale includ:
+Historical `genesis_ai_v*.py` files document the implementation's evolution.
 
-- **v1.0–v1.5:** dezvoltarea sistemului de comenzi.
-- **v1.6–v1.7:** separarea comenzilor și a sistemului de memorie în module Python.
-- **v1.8:** îmbunătățirea contextului conversațional.
-- **v1.9:** îmbunătățirea stabilității și gestionării erorilor.
-- **v2.0:** extinderea memoriei permanente.
+## Limitations (v2.0)
 
-Fișierele istorice `genesis_ai_v*.py` documentează evoluția implementării.
+- GENESIS v2.0 runs exclusively in the terminal.
+- The application requires a functioning Ollama service.
+- Performance depends on the selected model and available system resources.
+- Semantic search is performed using the local language model, not embeddings.
+- This version does not include a graphical interface.
 
-## Limitări
+## Project Status (v2.0)
 
-- GENESIS v2.0 funcționează exclusiv în terminal.
-- Aplicația necesită un serviciu Ollama funcțional.
-- Performanța depinde de modelul utilizat și de resursele sistemului.
-- Căutarea semantică este realizată cu ajutorul modelului lingvistic local, nu prin embeddings.
-- Nu există interfață grafică în această versiune.
+**GENESIS v2.0 — local version with a terminal interface.**
 
-## Stadiul proiectului
+Conversation functionality, memory updates, and data persistence were verified in a local environment.
 
-**GENESIS v2.0 — versiune locală, cu interfață în terminal.**
+## License
 
-Funcționalitățile de conversație, actualizare a memoriei și persistență au fost verificate într-un mediu local.
-
-## Licență
-
-Licența proiectului nu a fost stabilită.
-
-
-
-
-
-
-
+A license has not yet been selected.
 
 ---
 
-## GENESIS v3.0 — Versiunea curentă
+## GENESIS v3.0 — Current Version
 
-GENESIS v3.0 este un asistent AI local cu interfață grafică Tkinter, dezvoltat în Python și integrat cu Ollama.
+GENESIS v3.0 is a local AI assistant with a Tkinter graphical interface, developed in Python and integrated with Ollama.
 
-### Funcționalități
+### Features
 
-- Interfață grafică dark mode.
-- Conversații locale cu modelul `gemma3:12b`.
-- Afișarea progresivă a răspunsurilor AI (streaming).
-- Istoric conversațional și memorie locală.
-- Sistem de comenzi.
-- Încărcarea documentelor `.txt`, `.md`, `.py` și `.json`.
-- Documente UTF-8 de maximum 32 KiB.
+- Dark-mode graphical interface.
+- Local conversations using the `gemma3:12b` model.
+- Streaming AI responses.
+- Conversation history and local memory.
+- Command system.
+- Support for loading `.txt`, `.md`, `.py`, and `.json` documents.
+- UTF-8 text documents up to 32 KiB.
 
-Suportul PDF nu este inclus în v3.0.
+PDF support is not included in v3.0.
 
-### Instalare pe Ubuntu
+### Installation on Ubuntu
 
-1. Instalează pachetele necesare:
+**1. Install the required packages:**
 
-    sudo apt update
-    sudo apt install git python3 python3-venv python3-tk
+```bash
+sudo apt update
+sudo apt install git python3 python3-venv python3-tk
+```
 
-2. Clonează repository-ul:
+**2. Clone the repository:**
 
-    git clone https://github.com/Bogdanutz89/genesis-ai.git
-    cd genesis-ai
+```bash
+git clone https://github.com/Bogdanutz89/genesis-ai.git
+cd genesis-ai
+```
 
-3. Creează mediul virtual și instalează dependența Python:
+**3. Create a virtual environment and install the Python dependency:**
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    python -m pip install requests
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install requests
+```
 
-4. Instalează Ollama folosind instrucțiunile oficiale și descarcă modelul:
+**4. Install Ollama** using the official installation instructions.
 
-    ollama pull gemma3:12b
+Download the required model:
 
-5. Asigură-te că Ollama rulează, apoi pornește GENESIS:
+```bash
+ollama pull gemma3:12b
+```
 
-    python genesis_ai_v30.py
+**5. Make sure Ollama is running, then launch GENESIS:**
 
-### Configurare
+```bash
+python genesis_ai_v30.py
+```
 
-- Fișier principal: `genesis_ai_v30.py`
-- Model AI: `gemma3:12b`
-- API Ollama: `http://127.0.0.1:11434/api/chat`
-- Istoric local: `genesis_memory.json`
-- Memorie locală: `genesis_long_memory.json`
+### Configuration
 
-Fișierele de memorie sunt excluse din Git.
+- **Main application file:** `genesis_ai_v30.py`
+- **AI model:** `gemma3:12b`
+- **Ollama API:** `http://127.0.0.1:11434/api/chat`
+- **Local conversation history:** `genesis_memory.json`
+- **Local long-term memory:** `genesis_long_memory.json`
 
-### Colaborare
+Memory files are excluded from Git.
 
-Fiecare colaborator instalează local Python, Ollama și modelul AI.
+### Collaboration
 
-Modelul `gemma3:12b` necesită resurse hardware adecvate.
+Each collaborator installs Python, Ollama, and the AI model locally.
 
-Instalarea pe calculatorul unui colaborator nu a fost încă testată.
+The `gemma3:12b` model requires adequate hardware resources.
 
-Versiunile anterioare rămân disponibile pentru studierea evoluției proiectului.
+Installation on a collaborator's computer has not yet been tested.
+
+Previous versions remain available in the repository for studying the project's development.
 
 ---
 
-**PROJECT GENESIS — Versiune curentă: v3.0**
+**PROJECT GENESIS — Current Version: v3.0**
