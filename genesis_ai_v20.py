@@ -4,7 +4,7 @@ import genesis_memory
 from genesis_commands import este_comanda, executa_comanda
 
 
-print("=== GENESIS AI v1.9 ===")
+print("=== GENESIS AI v2.0 ===")
 print("Scrie 'exit' pentru a inchide programul.")
 print("Scrie '/memory' pentru a vedea memoria permanenta.")
 print("Scrie '/set cheie valoare' pentru a modifica memoria.")

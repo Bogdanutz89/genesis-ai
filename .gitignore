@@ -23,3 +23,5 @@ genesis_memory.json
 
 # JSON experiment data
 test_memory.json
+# GENESIS permanent memory
+genesis_long_memory.json

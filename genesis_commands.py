@@ -61,7 +61,7 @@ def executa_comanda(text, memorie,istoric,model,fisier_memorie,propune_modificar
 # COMANDA /status
     if text == "/status":
         print("\n=== STATUS GENESIS ===")
-        print("Versiune: v1.7")
+        print("Versiune: v2.0")
         print(f"Model AI: {model}")
         print(f"Mesaje in istoric: {len(istoric)}")
         print("Memorie permanenta: activa")
