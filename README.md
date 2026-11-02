@@ -196,3 +196,78 @@ Funcționalitățile de conversație, actualizare a memoriei și persistență a
 ## Licență
 
 Licența proiectului nu a fost stabilită.
+
+
+
+
+
+
+
+
+---
+
+## GENESIS v3.0 — Versiunea curentă
+
+GENESIS v3.0 este un asistent AI local cu interfață grafică Tkinter, dezvoltat în Python și integrat cu Ollama.
+
+### Funcționalități
+
+- Interfață grafică dark mode.
+- Conversații locale cu modelul `gemma3:12b`.
+- Afișarea progresivă a răspunsurilor AI (streaming).
+- Istoric conversațional și memorie locală.
+- Sistem de comenzi.
+- Încărcarea documentelor `.txt`, `.md`, `.py` și `.json`.
+- Documente UTF-8 de maximum 32 KiB.
+
+Suportul PDF nu este inclus în v3.0.
+
+### Instalare pe Ubuntu
+
+1. Instalează pachetele necesare:
+
+    sudo apt update
+    sudo apt install git python3 python3-venv python3-tk
+
+2. Clonează repository-ul:
+
+    git clone https://github.com/Bogdanutz89/genesis-ai.git
+    cd genesis-ai
+
+3. Creează mediul virtual și instalează dependența Python:
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+    python -m pip install requests
+
+4. Instalează Ollama folosind instrucțiunile oficiale și descarcă modelul:
+
+    ollama pull gemma3:12b
+
+5. Asigură-te că Ollama rulează, apoi pornește GENESIS:
+
+    python genesis_ai_v30.py
+
+### Configurare
+
+- Fișier principal: `genesis_ai_v30.py`
+- Model AI: `gemma3:12b`
+- API Ollama: `http://127.0.0.1:11434/api/chat`
+- Istoric local: `genesis_memory.json`
+- Memorie locală: `genesis_long_memory.json`
+
+Fișierele de memorie sunt excluse din Git.
+
+### Colaborare
+
+Fiecare colaborator instalează local Python, Ollama și modelul AI.
+
+Modelul `gemma3:12b` necesită resurse hardware adecvate.
+
+Instalarea pe calculatorul unui colaborator nu a fost încă testată.
+
+Versiunile anterioare rămân disponibile pentru studierea evoluției proiectului.
+
+---
+
+**PROJECT GENESIS — Versiune curentă: v3.0**
